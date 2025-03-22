@@ -1,0 +1,166 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  h1 {
+    margin-left: 30px;
+  }
+  
+  /* Navbar Styles */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 10px 20px;
+    height: 50px;
+  }
+  
+  .navbar .logo {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .navbar .nav-items {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .navbar .nav-items li {
+    margin-left: 20px;
+  }
+  
+  .navbar .nav-items li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+  }
+  
+  .navbar .nav-items li a:hover {
+    color: #ddd;
+  }
+  
+  /* Dropdown Styles */
+  .dropdown {
+    position: relative;
+  }
+  
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #333;
+    list-style: none;
+    padding: 10px;
+    margin: 0;
+  }
+  
+  .dropdown-menu li {
+    margin: 0;
+  }
+  
+  .dropdown-menu li a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  .dropdown:hover .dropdown-menu {
+    display: block;
+  }
+  
+  /* Video Section Styles */
+  .video-section {
+    position: relative;
+    text-align: center;
+  }
+  
+  .video-section video {
+    width: 100%;
+  }
+  
+  .video-section h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 48px;
+  }
+  
+  /* Book Categories Styles */
+  .book-categories {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+  }
+  
+  .category {
+    text-align: center;
+    border: 2px solid black;
+    padding: 10px;
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .category img {
+    width: 180px;
+    height: 240px;
+    object-fit: cover;
+  }
+  
+  .category p {
+    margin-top: 10px;
+    font-size: 18px;
+  }
+  
+  /* Footer Styles */
+  .footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 40px;
+  }
+  
+  /* About and Contact Page Styles */
+  .about-content, .contact-content {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .contact-content form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .contact-content form label {
+    margin-top: 10px;
+  }
+  
+  .contact-content form input, .contact-content form textarea {
+    width: 300px;
+    padding: 10px;
+    margin-top: 5px;
+  }
+  
+  .contact-content form button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .contact-content form button:hover {
+    background-color: #555;
+  }

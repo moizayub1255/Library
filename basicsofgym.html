@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Details</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="booksstyle.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">MyLibrary</div>
+    <ul class="nav-items">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <!-- <li class="dropdown">
+        <a href="#">Books</a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Health</a></li>
+          <li><a href="#">Coding</a></li>
+          <li><a href="#">Personal Growth</a></li>
+          <li><a href="#">Finance</a></li>
+        </ul>
+      </li> -->
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Book Details Section -->
+  <div class="book-details">
+    <div class="book-image">
+      <img src="./Health and Fitness/f3.webp" alt="Book Image">
+    </div>
+    <div class="book-specs">
+      <h2>Basics of Gym</h2>
+      <p><strong>Author:</strong> John Doe</p>
+      <p><strong>Genre:</strong> Health & Fitness</p>
+      <p><strong>Pages:</strong> 300</p>
+      <p><strong>Description:</strong> This book provides a comprehensive guide to developing healthy fitness habits.</p>
+      <button id="borrow-now">Borrow Now</button>
+      <button id="return-now">Return Book</button>
+    </div>
+  </div>
+
+  <!-- Borrow Now Modal -->
+  <div id="borrow-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Borrow Book</h2>
+      <form id="borrow-form">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        
+        <label for="start-date">Start Date:</label>
+        <input type="date" id="start-date" name="start-date" required>
+        
+        <label for="end-date">End Date:</label>
+        <input type="date" id="end-date" name="end-date" required>
+        
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Return Book Modal -->
+  <div id="return-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Return Book</h2>
+      <form id="return-form">
+        <label for="return-date">Return Date:</label>
+        <input type="date" id="return-date" name="return-date" required>
+
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2025 MyLibrary. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Get modals
+    const borrowModal = document.getElementById("borrow-modal");
+    const returnModal = document.getElementById("return-modal");
+
+    // Get buttons
+    const borrowBtn = document.getElementById("borrow-now");
+    const returnBtn = document.getElementById("return-now");
+
+    // Get close buttons
+    const closeBtns = document.getElementsByClassName("close");
+
+    // Open borrow modal
+    borrowBtn.onclick = function () {
+      borrowModal.style.display = "block";
+    };
+
+    // Open return modal
+    returnBtn.onclick = function () {
+      returnModal.style.display = "block";
+    };
+
+    // Close modal on close button click
+    for (let btn of closeBtns) {
+      btn.onclick = function () {
+        borrowModal.style.display = "none";
+        returnModal.style.display = "none";
+      };
+    }
+
+    // Close modal on clicking outside
+    window.onclick = function (event) {
+      if (event.target == borrowModal) {
+        borrowModal.style.display = "none";
+      } else if (event.target == returnModal) {
+        returnModal.style.display = "none";
+      }
+    };
+
+    // Borrow book logic
+    let borrowedStartDate;
+    let borrowedEndDate;
+
+    document.getElementById("borrow-form").onsubmit = function (event) {
+      event.preventDefault();
+      borrowedStartDate = new Date(document.getElementById("start-date").value);
+      borrowedEndDate = new Date(document.getElementById("end-date").value);
+
+      const diffTime = Math.abs(borrowedEndDate - borrowedStartDate);
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+      if (diffDays > 30) {
+        const fine = (diffDays - 30) * 500;
+        alert(`You have exceeded the borrowing period. Your fine is ${fine} rupees.`);
+      } else {
+        alert("Book borrowed successfully!");
+      }
+
+      borrowModal.style.display = "none";
+    };
+
+    // Return book logic
+    document.getElementById("return-form").onsubmit = function (event) {
+      event.preventDefault();
+      const returnDate = new Date(document.getElementById("return-date").value);
+
+      if (!borrowedEndDate) {
+        alert("No book borrowed yet!");
+        return;
+      }
+
+      const diffTime = returnDate - borrowedEndDate;
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+      if (diffDays > 0) {
+        const fine = diffDays * 500;
+        alert(`You have returned the book late. Your fine is ${fine} rupees.`);
+      } else {
+        alert("Book returned successfully! No fine applied.");
+      }
+
+      returnModal.style.display = "none";
+    };
+  </script>
+
+</body>
+</html>
